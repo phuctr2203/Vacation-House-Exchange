@@ -9,7 +9,7 @@ int main() {
             "\nGroup: Group 18 "
             "\ns3911244, Tran Hoang Phuc "
             "\ns..., ... "
-            "\ns..., ... "
+            "\ns3883630, Nguyen Tri Dung "
             "\ns..., ... " << endl;
 
 
