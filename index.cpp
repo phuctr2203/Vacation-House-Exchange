@@ -8,7 +8,7 @@ int main() {
             "\n \nInstructor: Mr. Linh Tran "
             "\nGroup: Group 18 "
             "\ns3911244, Tran Hoang Phuc "
-            "\ns..., ... "
+            "\ns3883631, Nguyen Huy Binh "
             "\ns..., ... "
             "\ns..., ... " << endl;
 
