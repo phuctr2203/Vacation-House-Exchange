@@ -18,4 +18,5 @@ private:
     vector<review> reviewList;
 
 public:
+    void viewHistory();
 };
