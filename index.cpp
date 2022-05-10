@@ -11,7 +11,8 @@ int main() {
             "\ns3883631, Nguyen Huy Binh "
             "\ns3883630, Nguyen Tri Dung "
             "\ns..., ... " << endl;
-
+    cout << "Use the app as 1. Guest   2. Member   3. Admin" << endl;
+    
 
     return 0;
 }
