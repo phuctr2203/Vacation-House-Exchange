@@ -1,62 +1,193 @@
 #include <iostream>
-#include <vector>
-#include <fstream>
 #include <sstream>
-#include "history.cpp"
-#include "house.cpp"
+#include <vector>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
 class Member {
-protected:
+private:
     string username;
     string password;
     string name;
     string phone;
     int creditPoints;
+    double RatingScore;
 
 public:
-    // Constructor
-    Member() {};
-    Member(string name, string phone) {
+    Member(){}
+    Member(string username, string password, string name, string phone, int creditPoints, double RatingScore)
+    {
+        this->username = username;
+        this->password = password;
         this->name = name;
         this->phone = phone;
+        this->creditPoints = creditPoints;
+        this->RatingScore = RatingScore;
     }
 
-    virtual void viewAllHouses();
-    virtual void viewInformation();
-    virtual void searchHouses();
-    virtual void requestOccupy();
-};
+    string getUsername(){
+        return username;
+    }
 
-class Owner: public Member {
-private:
-    vector<House *> house;
-    
-public:
-    // Constructor
-    Owner() {};
-    Owner(string name, string phone) : Member(name, phone) {}
+    string getPwd(){
+        return password;
+    }
 
-    void listHouse() {
-        fstream file;
-        string path = "D:/Code/C++ RMIT/EEET2824/data/house.txt";
-    };
-    void unListHouse();
-    void acceptRequest();
-    void rateOccupier();
-};
+    string getNameUser(){
+        return name;
+    }
 
-class Occupy: public Member {
-private:
-    float occupierRating;
-    bool isRequest;
-    vector <History> history;
+    string getPhoneUser(){
+        return phone;
+    }
 
-public:
-    void rateHouse();
+    int getCreditPoints()
+    {
+        return creditPoints;
+    }
+
+    double getRatingScore()
+    {
+        return RatingScore;
+    }
+
+    void addPoint(int a)
+    {
+        creditPoints += a;
+    }
+
+    void addRatingScore(double a)
+    {
+        RatingScore += a;
+    }
+
+    void viewAllHouses(){
+
+    }
+
+    void viewInformation(){      
+        cout << "\nUsername: " << username 
+        << "\nPassword: " << password 
+        << "\nName: "<< name 
+        << "\nPhone: "<< phone 
+        << "\nCredit Points: " << creditPoints 
+        << "\nRating Score: " << RatingScore << endl;
+    }
+
+    void searchHouses();
     void requestOccupy();
-    void checkRequest();
-    void showHistory();
-    void addHistory();
 };
+
+void signIn() {
+    vector<Member> mem;
+
+    ifstream iFile("D:/Code/C++ RMIT/EEET2824/data/member.txt");
+    if (iFile.fail())
+    {
+        cout << "Fail to open file";
+    }
+    while (!iFile.eof())
+    {
+        string username;
+        string password;
+        string name;
+        string phone;
+        int creditPoints;
+        double RatingScore;
+        char ch;
+        stringstream ss;
+        string file_string;
+        getline(iFile, file_string);
+        ss << file_string;
+        ss >> username >> password >> name >> phone >> creditPoints >> ch >> RatingScore;
+        if (!username.empty()){
+            username.pop_back();
+        }
+
+        if (!password.empty()){
+            password.pop_back();
+        }
+
+        if (!name.empty()){
+            name.pop_back();
+        }
+
+        if (!phone.empty()){
+            phone.pop_back();
+        }
+
+        Member member1(username, password, name, phone, creditPoints, RatingScore);
+        mem.push_back(member1);
+    }
+    iFile.close();
+
+    for(int i = 0; i < mem.size(); i++)
+    {
+        mem[i].viewInformation();
+    }
+
+    //check input
+    int condition_true = 0;
+    int count = 0;
+    do{
+        string username_input;
+        string username_password;
+        if(count == 0)
+        {
+            cout << "\nEnter username: ";
+            cin >> username_input;
+            cout << "Enter password: ";
+            cin >> username_password;
+        }
+        else{
+            cout << "Wrong username or password. Enter again! " << endl;
+            cout << "\nEnter username: ";
+            cin >> username_input;
+            cout << "Enter password: ";
+            cin >> username_password;
+        }
+
+
+        for(int i = 0; i < mem.size(); i++)
+        {
+            if(mem[i].getUsername() == username_input && mem[i].getPwd() == username_password)
+            {
+                mem[i].viewInformation();
+                //mem[i].addPoint(5);
+                //mem[i].addRatingScore(10);
+                condition_true++;
+            }
+        }
+        count++;
+    }while(condition_true == 0);
+
+    ofstream oFile("member.txt", std::ofstream::trunc);
+    for(int i = 0; i < mem.size(); i++)
+    {
+        string username =mem[i].getUsername();
+        string password = mem[i].getPwd();
+        string name =mem[i].getNameUser();
+        string phone =mem[i].getPhoneUser();
+        int creditPoints =mem[i].getCreditPoints();
+        double RatingScore = mem[i].getRatingScore();
+        if(i != mem.size() - 1){
+            oFile << username << ", " 
+                << password << ", " 
+                << name << ", " 
+                << phone << ", " 
+                << creditPoints << ", "
+                << RatingScore << endl;
+        }
+        else{
+            oFile << username << ", " 
+                    << password << ", " 
+                    << name << ", " 
+                    << phone << ", " 
+                    << creditPoints <<", "
+                    << RatingScore;
+        }
+    }
+    oFile.close();
+}
