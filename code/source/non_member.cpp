@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include "member.cpp"
 
 using namespace std;
 
@@ -15,27 +16,67 @@ private:
     double rating = 0;
 
 public:
+    //Constructor
+    nonMember() {};
+    nonMember(string username, string password, string name, string phone)
+    {
+        this->username = username;
+        this->password = password;
+        this->name = name;
+        this->phone = phone;
+    }
+
+    string getUsername(){
+        return username;
+    }
+
     void signUp() {
         int locationPick;
 
         // Registration
         nonMember newMember;
+        vector<Member> mem;
+  
 
-        fstream file;
-        string path = "D:/Code/C++ RMIT/EEET2824/data/member.txt";
+        //check input
+        int condition_true = 0;
+        int count = 0;
 
         cout << "----- Register Account -----" << endl;
-        cout << "Please enter username: " << endl;
-        cin >> newMember.username;
 
-        cout << "Please enter password: " << endl;
-        cin >> newMember.password;
+        do{
+            string username_input;
+            if(count == 0)
+            {
+                cout << "Please enter username: " << endl;
+                cin >> username_input;
+            }
+            else{
+                cout << "Username is not available, please use other username." << endl;
+                cout << "\nPlease enter username: ";
+                cin >> username_input;
+            }
 
-        cout << "Please enter you full name: " << endl;
-        cin >> newMember.name;
+            for(int i = 0; i < mem.size(); i++)
+            {
+                if(mem[i].getUsername() != username_input)
+                {
+                    cin >> newMember.username;
+                    condition_true++;
+                }
 
-        cout << "Please enter phone numbera: " << endl;
-        cin >> newMember.phone;
+            cout << "Please enter password: " << endl;
+            cin >> newMember.password;
+
+            cout << "Please enter you full name: " << endl;
+            cin >> newMember.name;
+
+            cout << "Please enter phone numbera: " << endl;
+            cin >> newMember.phone;
+            }
+            count++;
+        }while(condition_true == 0);
+        
         
         /*
         cout << "Choose house location (1 to 3): " << endl;
@@ -63,20 +104,14 @@ public:
         newMember.creditPoints = 500;
           
         //Store into the system
-        file.open(path, ios::app);
-        if (file.is_open()) {
-            file << newMember.username << "," << newMember.password << "," << newMember.name << "," << newMember.phone << "," << newMember.creditPoints << newMember.name << "," << newMember.rating << endl;
-            file.close();
+        ofstream oFile("member.txt", std::ofstream::trunc);
+        for(int i = 0; i < mem.size(); i++)
+        {
+            oFile << newMember.username << ", " << newMember.password << ", " << newMember.name << ", " << newMember.phone << ", " << newMember.creditPoints << "," << newMember.rating << endl;
+            oFile.close();
         }
         cout << "Registration complete" << endl;
         }
     
     void viewAllHouses();
 };
-
-int main() {
-    nonMember *newMember = new nonMember();
-    newMember->signUp();
-
-    return 0;
-}
