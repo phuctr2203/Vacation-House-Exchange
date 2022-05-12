@@ -1,22 +1,30 @@
 #include <iostream>
+#include <string>
 #include <vector>
-#include "review.cpp"
-#include "request.cpp"
 
 using namespace std;
 
-class house {
+class House {
 private:
-    float houseRating;
-    string location;
     string owner;
-
-    float minOccupierRate;
-    bool isOccupied;
-
-    vector<request> requestList;
-    vector<review> reviewList;
+    string name;
+    string location;
+    string occupier;
+    int creditPrice;
+    double houseRating;
 
 public:
-    void viewHistory();
+    //Constructors
+    House() {};
+    House(string owner, string name, string location, string occupier, int creditPrice, double houseRating) {
+        this->owner = owner;
+        this->name = name;
+        this->location = location;
+        this->occupier = occupier;
+        this->creditPrice = creditPrice;
+        this->houseRating = houseRating;
+    }
+
+    void viewHouse();
+    void addHouse(House house);
 };
