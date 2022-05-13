@@ -36,11 +36,15 @@ public:
 
     double getRequiredRating();
 
-    void viewHouseInfo();
+    void viewHouseInfo(int a);
 
     void calHouseRating(double a);
 };
 
-void viewAllHouses();
+void viewAllHouses(int a);
+
+vector<House>tempHouseMemory();
+vector<House>viewHouseLocation (string location);
+House viewHousePossess(string house_possess_user);
 
 #endif

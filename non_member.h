@@ -7,5 +7,9 @@
 #include <string>
 
 using namespace std;
-    void signUp();
+
+void signUp();
+
+void nonMemberSignUp();
+
 #endif

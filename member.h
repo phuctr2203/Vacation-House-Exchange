@@ -54,8 +54,19 @@ public:
 
     void searchHouses();
     void requestOccupy();
+
 };
 
-void signIn();
-vector<Member> tempMemory();
+bool signIn(string u_intput, string u_pwd);
+
+vector<Member>tempMemory();
+
+Member inputUser(string username_int);
+
+void viewAllMembers();
+
+void memberSignIn();
+
+void searchHouses();
+
 #endif

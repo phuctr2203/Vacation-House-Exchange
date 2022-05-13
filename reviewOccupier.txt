@@ -1,0 +1,6 @@
+//Occupier, Reviewer, Score, Comment
+dung,binh,3.3,Nha tam duoc
+dung,phuc,4.6,Nha cung duoc
+phuc,dung,3.4,Nha thoang
+phuc,truc,2.2,Chua du yeu cau
+binh,phuc,5.9,Nha giong hinh anh

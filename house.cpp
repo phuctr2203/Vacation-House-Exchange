@@ -52,173 +52,45 @@ void House::calHouseRating(double a)
     houseRating += a;
 }
 
-void House::viewHouseInfo(){
-    cout
-    << "\nHouse Owner: " << owner
-    << "\nHouse Name: " << name
-    << "\nLocation: " << location
-    << "\nPrice: " << creditPrice
-    << "\nRating: " << houseRating
-    << "\nRequired Rating: " << requiredRating
-    << "\nAvailablity: " << occupier << endl;
-}
-
-void viewAllHouses() {
-    vector<House> house;
-
-    ifstream iFile("D:/Code/C++ RMIT/EEET2824/data/houseList.txt");
-
-    if (iFile.fail())
+void House::viewHouseInfo(int a){
+    if(a == 1)
     {
-        cout << "Fail to open file";
-    }
-
-    while (!iFile.eof())
-    {
-        string owner;
-        string occupier;
-        string name;
-        string location;
-        int creditPrice;
-        double houseRating;
-        double requiredRating;
-        char ch;
-        stringstream ss;
-        string file_string;
-        getline(iFile, file_string);
-        ss << file_string;
-        ss >> owner >> occupier >> name >> location >> creditPrice >> ch >> houseRating >> ch >> requiredRating;
-
-        if (!owner.empty()){
-            owner.pop_back();
-        }
-
-        if (!name.empty()){
-            name.pop_back();
-        }
-
-        if (!location.empty()){
-            location.pop_back();
-        }
-
-        if (!occupier.empty()){
-            occupier.pop_back();
-        }
-
-        House house1(owner, occupier, name, location, creditPrice, houseRating, requiredRating);
-        house.push_back(house1);
-    }
-    iFile.close();
-
-    for (int i = 0; i < house.size(); i++)
-    {
-        house[i].viewHouseInfo();
-    }
-    
-    ofstream oFile("D:/Code/C++ RMIT/EEET2824/data/houseList.txt", std::ofstream::trunc);
-    for (int i = 0; i < house.size(); i++)
-    {
-        string owner = house[i].getOwner();
-        string occupier = house[i].getOccupier();
-        string name = house[i].getName();
-        string location = house[i].getLocation();
-        int creditPrice = house[i].getCreditPrice();
-        double houseRating = house[i].getHouseRating();
-        double requiredRating = house[i].getRequiredRating();
-
-        if (i != house.size() - 1)
-        {
-            oFile
-            << owner << ", "
-            << occupier << ", "
-            << name << ", "
-            << location << ", "
-            << creditPrice << ", "
-            << houseRating << ", "
-            << requiredRating << endl;
-        }
-        else
-        {
-            oFile
-            << owner << ", "
-            << occupier << ", "
-            << name << ", "
-            << location << ", "
-            << creditPrice << ", "
-            << houseRating << ", "
-            << requiredRating;
-        }
-    }
-    oFile.close();
-    
-}
-/*class House {
-private:
-    string owner;
-    string name;
-    string location;
-    string occupier;
-    int creditPrice;
-    double houseRating;
-
-public:
-    //Constructors
-    House() {};
-    House(string owner, string name, string location, int creditPrice, double houseRating, string occupier) {
-        this->owner = owner;
-        this->name = name;
-        this->location = location;
-        this->occupier = occupier;
-        this->creditPrice = creditPrice;
-        this->houseRating = houseRating;
-    }
-
-    string getOwner(){
-        return owner;
-    }
-
-    string getName(){
-        return name;
-    }
-
-    string getLocation(){
-        return location;
-    }
-
-    string getOccupier(){
-        return occupier;
-    }
-
-    int getCreditPrice(){
-        return creditPrice;
-    }
-
-    double getHouseRating(){
-        return houseRating;
-    }
-
-    void calHouseRating(double a)
-    {
-        houseRating += a;
-    }
-
-    void viewHouseInfo(){
         cout
         << "\nHouse Owner: " << owner
         << "\nHouse Name: " << name
         << "\nLocation: " << location
-        << "\nPrice: " << creditPrice
+        << "\nPrice: " << creditPrice << "/Night"
         << "\nRating: " << houseRating
-        << "\nAvailablity: " << occupier
-        << endl;
+        << "\nRequired Rating: " << requiredRating << endl;
     }
-};
+    else if(a == 2)
+    {
+        cout
+        << "\nHouse Owner: " << owner
+        << "\nHouse Name: " << name
+        << "\nLocation: " << location
+        << "\nPrice: " << creditPrice << "/Night"
+        << "\nRating: " << houseRating
+        << "\nRequired Rating: " << requiredRating
+        << "\nAvailability: " << occupier << endl;
+    }
+    else
+    {
+        cout
+        << "\nHouse Owner: " << owner
+        << "\nHouse Name: " << name
+        << "\nLocation: " << location
+        << "\nPrice: " << creditPrice << "/Night"
+        << "\nRating: " << houseRating
+        << "\nRequired Rating: " << requiredRating
+        << "\nCurrent Occupier: " << occupier << endl;
+    }
+}
 
-void houseInfo() {
-    vector<House> house;
+vector<House>tempHouseMemory(){
+    vector<House> houseList;
 
-    ifstream iFile("C:/Users/Binh Nguyen/Desktop/Folder của trường R/EEET2482/Group Assignment/sed-group-asm/data/houseList.txt");
-
+    ifstream iFile("houseList.txt");
     if (iFile.fail())
     {
         cout << "Fail to open file";
@@ -227,75 +99,78 @@ void houseInfo() {
     while (!iFile.eof())
     {
         string owner;
+        string occupier;
         string name;
         string location;
-        int creditPrice;
-        double houseRating;
-        string occupier;
-        char ch;
-        stringstream ss;
+        string creditPrice_str;
+        string houseRating_str;
+        string requiredRating_str;
         string file_string;
         getline(iFile, file_string);
-        ss << file_string;
-        ss >> owner >> name >> location >> creditPrice >> ch >> houseRating >> occupier;
+        stringstream ss(file_string);
+        getline(ss, owner, ',');
+        getline(ss, occupier, ',');
+        getline(ss, name, ',');
+        getline(ss, location, ',');
+        
+        int creditPrice;
+        getline(ss, creditPrice_str, ',');
+        creditPrice = stoi(creditPrice_str);
 
-        if (!owner.empty()){
-            owner.pop_back();
-        }
+        double houseRating;
+        getline(ss, houseRating_str, ',');
+        houseRating = stod(houseRating_str);
 
-        if (!name.empty()){
-            name.pop_back();
-        }
+        double requiredRating;
+        getline(ss, requiredRating_str, ',');
+        requiredRating = stod(requiredRating_str);
 
-        if (!location.empty()){
-            location.pop_back();
-        }
-
-        if (!occupier.empty()){
-            occupier.pop_back();
-        }
-
-        House house1(owner, name, location, creditPrice, houseRating, occupier);
-        house.push_back(house1);
+        House house1(owner, occupier, name, location, creditPrice, houseRating, requiredRating);
+        houseList.push_back(house1);
     }
     iFile.close();
+    return houseList;
+}
 
-    for (int i = 0; i < house.size(); i++)
+void viewAllHouses(int a) {
+    vector<House> houseList = tempHouseMemory();
+
+    for (int i = 0; i < houseList.size(); i++) {
+        houseList[i].viewHouseInfo(a);
+    }
+}
+
+vector<House>viewHouseLocation (string location) {
+    vector<House> cityList;
+
+    vector<House> houseList = tempHouseMemory();
+    
+    for(int i = 0; i < houseList.size(); i++)
     {
-        house[i].viewHouseInfo();
+        if(location == houseList[i].getLocation()) {
+            cityList.push_back(houseList[i]);
+        };
+    }
+
+    for (int i = 0; i < cityList.size(); i++) {
+        cityList[i].viewHouseInfo(2);
     }
     
-    ofstream oFile("C:/Users/Binh Nguyen/Desktop/Folder của trường R/EEET2482/Group Assignment/sed-group-asm/data/houseList.txt", ofstream::trunc);
-    for (int i = 0; i < house.size(); i++)
-    {
-        string owner = house[i].getOwner();
-        string name = house[i].getName();
-        string location = house[i].getLocation();
-        int creditPrice = house[i].getCreditPrice();
-        double houseRating = house[i].getHouseRating();
-        string occupier = house[i].getOccupier();
+    return cityList;
+}
 
-        if (i != house.size() - 1)
+House viewHousePossess(string house_possess_user)
+{
+    House house_result;
+    vector<House> house_total = tempHouseMemory();
+    for(int i = 0; i < house_total.size(); i++)
+    {
+        if(house_possess_user == house_total[i].getOwner())
         {
-            oFile
-            << owner << ", "
-            << name << ", "
-            << location << ", "
-            << creditPrice << ", "
-            << houseRating << ", "
-            << occupier << endl;
-        }
-        else
-        {
-            oFile
-            << owner << ", "
-            << name << ", "
-            << location << ", "
-            << creditPrice << ", "
-            << houseRating << ", "
-            << occupier;
+            house_result = house_total[i];
         }
     }
-    oFile.close();
+    house_result.viewHouseInfo(3);
+
+    return house_result;
 }
-*/
