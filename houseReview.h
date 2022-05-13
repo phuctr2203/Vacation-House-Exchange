@@ -21,7 +21,7 @@ public:
     double getScore();
     string getCmt();
 
-    void showHouseCmt();
+    void showHouseReview();
     void addHouseCmt();
     void addHouseScore();
     void updateReview();
