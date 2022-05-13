@@ -201,8 +201,15 @@ House viewHousePossess(string house_possess_user)
             house_result = house_total[i];
         }
     }
-    house_result.viewHouseInfo(3);
+
+    if (house_result.getOwner() == "") {
+        cout << "You have not listed a house"<< endl;
+    } else {
+        house_result.viewHouseInfo(3);
+    }
 
     return house_result;
 }
+
+
 
