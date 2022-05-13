@@ -2,3 +2,5 @@ phuc,none,Phuc Hotel,Hanoi,50,0,0
 dung,phuc,Dung House,Hanoi,30,5,3
 binh,none,Binh Homestay,Saigon,23,0,0
 truc,dung,Truc Home,Danang,37,0,7
+strange,none,hello,Hanoi,123,0,1
+tony,none,hello,Hanoi,123,0,1

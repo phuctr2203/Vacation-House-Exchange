@@ -4,15 +4,16 @@
 #include <string>
 #include <fstream>
 #include "house.h"
+#include "member.h"
 
 using namespace std;
 
 House::House(){}
-House::House(string owner, string occupier, string name, string location, int creditPrice, double houseRating, double requiredRating)
+House::House(string owner, string occupier, string houseName, string location, int creditPrice, double houseRating, double requiredRating)
 { 
     this->owner = owner;
     this->occupier = occupier;
-    this->name = name;
+    this->houseName = houseName;
     this->location = location;
     this->creditPrice = creditPrice;
     this->houseRating = houseRating;
@@ -23,8 +24,8 @@ string House::getOwner(){
     return owner;
 }
 
-string House::getName(){
-    return name;
+string House::getHouseName(){
+    return houseName;
 }
 
 string House::getLocation(){
@@ -47,6 +48,34 @@ double House::getRequiredRating(){
     return requiredRating;
 }
 
+void House::setOwner(string a){
+    owner = a;
+}
+
+void House::setOccupier(string a){
+    occupier = a;;
+}
+
+void House::setHouseName(string a){
+    houseName = a;;
+}
+
+void House::setLocation(string a){
+    location = a;
+}
+
+void House::setCreditPrice(int a){
+    creditPrice = a;
+}
+
+void House::setHouseRating(double a){
+    houseRating = a;
+}
+
+void House::setRequiredRating(double a){
+    requiredRating = a;
+}
+
 void House::calHouseRating(double a)
 {
     houseRating += a;
@@ -57,7 +86,7 @@ void House::viewHouseInfo(int a){
     {
         cout
         << "\nHouse Owner: " << owner
-        << "\nHouse Name: " << name
+        << "\nHouse Name: " << houseName
         << "\nLocation: " << location
         << "\nPrice: " << creditPrice << "/Night"
         << "\nRating: " << houseRating
@@ -67,18 +96,17 @@ void House::viewHouseInfo(int a){
     {
         cout
         << "\nHouse Owner: " << owner
-        << "\nHouse Name: " << name
+        << "\nHouse Name: " << houseName
         << "\nLocation: " << location
         << "\nPrice: " << creditPrice << "/Night"
         << "\nRating: " << houseRating
-        << "\nRequired Rating: " << requiredRating
-        << "\nAvailability: " << occupier << endl;
+        << "\nRequired Rating: " << requiredRating << endl;
     }
-    else
+    else if(a == 3)
     {
         cout
         << "\nHouse Owner: " << owner
-        << "\nHouse Name: " << name
+        << "\nHouse Name: " << houseName
         << "\nLocation: " << location
         << "\nPrice: " << creditPrice << "/Night"
         << "\nRating: " << houseRating
@@ -100,7 +128,7 @@ vector<House>tempHouseMemory(){
     {
         string owner;
         string occupier;
-        string name;
+        string houseName;
         string location;
         string creditPrice_str;
         string houseRating_str;
@@ -110,7 +138,7 @@ vector<House>tempHouseMemory(){
         stringstream ss(file_string);
         getline(ss, owner, ',');
         getline(ss, occupier, ',');
-        getline(ss, name, ',');
+        getline(ss, houseName, ',');
         getline(ss, location, ',');
         
         int creditPrice;
@@ -125,7 +153,7 @@ vector<House>tempHouseMemory(){
         getline(ss, requiredRating_str, ',');
         requiredRating = stod(requiredRating_str);
 
-        House house1(owner, occupier, name, location, creditPrice, houseRating, requiredRating);
+        House house1(owner, occupier, houseName, location, creditPrice, houseRating, requiredRating);
         houseList.push_back(house1);
     }
     iFile.close();
@@ -140,16 +168,19 @@ void viewAllHouses(int a) {
     }
 }
 
-vector<House>viewHouseLocation (string location) {
+vector<House>viewHouseLocation(string location, Member currentLogIn) {
     vector<House> cityList;
 
     vector<House> houseList = tempHouseMemory();
     
     for(int i = 0; i < houseList.size(); i++)
     {
-        if(location == houseList[i].getLocation()) {
+        if((location == houseList[i].getLocation()) && 
+           (currentLogIn.getCreditPoints() >= houseList[i].getCreditPrice()) &&
+           (currentLogIn.getRatingScore() >= houseList[i].getRequiredRating()) && houseList[i].getOccupier() == "none")
+        {
             cityList.push_back(houseList[i]);
-        };
+        }
     }
 
     for (int i = 0; i < cityList.size(); i++) {
@@ -174,3 +205,4 @@ House viewHousePossess(string house_possess_user)
 
     return house_result;
 }
+

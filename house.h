@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "member.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class House {
 private:
     string owner;
     string occupier;
-    string name;
+    string houseName;
     string location;
     int creditPrice;
     double houseRating;
@@ -20,13 +21,13 @@ private:
     
 public:
     House();
-    House(string owner, string occupier, string name, string location, int creditPrice, double houseRating, double requiredRating);
+    House(string owner, string occupier, string houseName, string location, int creditPrice, double houseRating, double requiredRating);
 
     string getOwner();
 
     string getOccupier();
 
-    string getName();
+    string getHouseName();
 
     string getLocation();
 
@@ -36,6 +37,20 @@ public:
 
     double getRequiredRating();
 
+    void setOwner(string a);
+
+    void setOccupier(string a);
+
+    void setHouseName(string a);
+
+    void setLocation(string a);
+
+    void setCreditPrice(int a);
+
+    void setHouseRating(double a);
+
+    void setRequiredRating(double a);
+
     void viewHouseInfo(int a);
 
     void calHouseRating(double a);
@@ -44,7 +59,7 @@ public:
 void viewAllHouses(int a);
 
 vector<House>tempHouseMemory();
-vector<House>viewHouseLocation (string location);
+vector<House>viewHouseLocation (string location, Member currentLogIn);
 House viewHousePossess(string house_possess_user);
 
 #endif

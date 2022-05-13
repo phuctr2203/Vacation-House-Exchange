@@ -3,6 +3,7 @@
 #include "admin.h"
 #include "house.h"
 #include "non_member.h"
+#include "editHouse.h"
  
 using namespace std;
 
@@ -24,7 +25,7 @@ int main() {
     switch (choose) {
         case 1: 
         {
-            nonMemberSignUp();
+            nonMemberMenu();
             break;
         }
         case 2: 
@@ -48,13 +49,3 @@ int main() {
 
     return 0;
 }
-
-
-/*
-Things to do
-list/unlist house
-check availability
-ktra bai truc
-if else rating + credit point cho search house
-*/
-

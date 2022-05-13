@@ -10,6 +10,6 @@ using namespace std;
 
 void signUp();
 
-void nonMemberSignUp();
+void nonMemberMenu();
 
 #endif

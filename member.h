@@ -52,7 +52,6 @@ public:
     void viewAllHouses();
     void viewInformation();
 
-    void searchHouses();
     void requestOccupy();
 
 };
@@ -67,6 +66,6 @@ void viewAllMembers();
 
 void memberSignIn();
 
-void searchHouses();
+void searchHouses(Member x);
 
 #endif

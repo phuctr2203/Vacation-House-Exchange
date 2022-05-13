@@ -10,95 +10,95 @@
 using namespace std;
 
 void signUp() {
-        
-        //check input
-        int condition_true = 0;
-        int count = 0;
-        vector<Member> mem = tempMemory();
-        Member newMember;
-        cout << "----- Register Account -----" << endl;
-        do{
-            string username_input;
-            if(count == 0)
-            {
-                cout << "Please enter username: ";
-                cin >> username_input;
-            }
-            else{
-                cout << "Username is not available, please use other username." << endl;
-                cout << "\nPlease enter username: ";
-                cin >> username_input;
-            }
+    
+    //check input
+    int condition_true = 0;
+    int count = 0;
+    vector<Member> mem = tempMemory();
+    Member newMember;
+    cout << "----- Register Account -----" << endl;
+    do {
+        string username_input;
+        if(count == 0)
+        {
+            cout << "Please enter username: ";
+            cin >> username_input;
+        }
+        else{
+            cout << "Username is not available, please use other username." << endl;
+            cout << "\nPlease enter username: ";
+            cin >> username_input;
+        }
 
-            for(int i = 0; i < mem.size(); i++)
-            {
-                if(username_input == mem[i].getUsername())
-                {
-                    condition_true = 0;
-                    break;
-                }
-                else
-                {
-                    condition_true = 1;
-                }
-            }
-            newMember.setUsername(username_input);
-            count++;
-        }while(condition_true == 0);
-     
-        string pwd_input;
-        string name_input;
-        string phone_input;
-        
-        cout << "Please enter password: ";
-        cin >> pwd_input;
-        newMember.setPwd(pwd_input);
-
-        cout << "Please enter you full name: ";
-        cin.ignore();
-        getline(cin, name_input);
-        newMember.setNameuser(name_input);
-
-
-        cout << "Please enter phone number: ";
-        cin >> phone_input;
-        newMember.setPhone(phone_input);
-
-        newMember.setCreditpoints(500);
-        newMember.setRatingScore(0);
-
-        mem.push_back(newMember);
-
-        ofstream oFile("member.txt", std::ofstream::trunc);
         for(int i = 0; i < mem.size(); i++)
         {
-            string username =mem[i].getUsername();
-            string password = mem[i].getPwd();
-            string name =mem[i].getNameUser();
-            string phone =mem[i].getPhoneUser();
-            int creditPoints =mem[i].getCreditPoints();
-            double RatingScore = mem[i].getRatingScore();
-            if(i != mem.size() - 1){
-                oFile << username << "," 
+            if(username_input == mem[i].getUsername())
+            {
+                condition_true = 0;
+                break;
+            }
+            else
+            {
+                condition_true = 1;
+            }
+        }
+        newMember.setUsername(username_input);
+        count++;
+    }while(condition_true == 0);
+    
+    string pwd_input;
+    string name_input;
+    string phone_input;
+    
+    cout << "Please enter password: ";
+    cin >> pwd_input;
+    newMember.setPwd(pwd_input);
+
+    cout << "Please enter you full name: ";
+    cin.ignore();
+    getline(cin, name_input);
+    newMember.setNameuser(name_input);
+
+
+    cout << "Please enter phone number: ";
+    cin >> phone_input;
+    newMember.setPhone(phone_input);
+
+    newMember.setCreditpoints(500);
+    newMember.setRatingScore(0);
+
+    mem.push_back(newMember);
+
+    ofstream oFile("member.txt", std::ofstream::trunc);
+    for(int i = 0; i < mem.size(); i++)
+    {
+        string username =mem[i].getUsername();
+        string password = mem[i].getPwd();
+        string name =mem[i].getNameUser();
+        string phone =mem[i].getPhoneUser();
+        int creditPoints =mem[i].getCreditPoints();
+        double RatingScore = mem[i].getRatingScore();
+
+        if(i != mem.size() - 1){
+            oFile << username << "," 
+                << password << "," 
+                << name << "," 
+                << phone << "," 
+                << creditPoints << ","
+                << RatingScore << endl;
+        } else {
+            oFile << username << "," 
                     << password << "," 
                     << name << "," 
                     << phone << "," 
-                    << creditPoints << ","
-                    << RatingScore << endl;
-            }
-            else{
-                oFile << username << "," 
-                        << password << "," 
-                        << name << "," 
-                        << phone << "," 
-                        << creditPoints <<","
-                        << RatingScore;
-            }
+                    << creditPoints <<","
+                    << RatingScore;
         }
-        cout << "Registration complete" << endl;
+    }
+    cout << "Registration complete" << endl;
 }
 
-void nonMemberSignUp() {
+void nonMemberMenu() {
     menu:
     cout << "\nThis is your menu as a guest:"
             "\n1. View Houses"

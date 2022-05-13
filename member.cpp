@@ -5,6 +5,7 @@
 #include <fstream>
 #include "member.h"
 #include "house.h"
+#include "editHouse.h"
 
 using namespace std;
 
@@ -90,10 +91,6 @@ void Member::viewInformation(){
     << "\nPhone: "<< phone 
     << "\nCredit Points: " << creditPoints 
     << "\nRating Score: " << RatingScore << endl;
-}
-
-void Member::searchHouses(){
-
 }
 
 void Member::requestOccupy(){
@@ -183,7 +180,7 @@ void viewAllMembers() {
     }
 }
 
-void searchHouses() {
+void searchHouses(Member x) {
     int index;
     string location;
     vector<House> cityList;
@@ -200,19 +197,31 @@ void searchHouses() {
         case 1: 
         {
             location = "Hanoi";
-            cityList = viewHouseLocation(location);
+            cityList = viewHouseLocation(location, x);
+            if(cityList.size() == 0)
+            {
+                cout << "Cannot find house suitable with your status" << endl;
+            }
             break;
         }
         case 2: 
         {
             location = "Saigon";
-            cityList = viewHouseLocation(location);
+            cityList = viewHouseLocation(location, x);
+            if(cityList.size() == 0)
+            {
+                cout << "Cannot find house suitable with your status" << endl;
+            }
             break;
         }
         case 3: 
         {
             location = "Danang";
-            cityList = viewHouseLocation(location);
+            cityList = viewHouseLocation(location, x);
+            if(cityList.size() == 0)
+            {
+                cout << "Cannot find house suitable with your status" << endl;
+            }
             break;
         }
         case 0:
@@ -231,6 +240,7 @@ void searchHouses() {
 
 void memberSignIn() {
     string username_input, username_password;
+    int index;
     
     cout << "\nEnter username: ";
     cin >> username_input;
@@ -265,11 +275,45 @@ void memberSignIn() {
             case 2: 
             {
                 viewHousePossess(username_input);
+                cout << "\nThis is your house information:"
+                        "\n1. List house"
+                        "\n2. Unlist house"
+                        "\n3. Back to menu"
+                        "\n0. Exit" << endl;
+                houseEdit:
+                cin >> index;
+                switch (index) {
+                    case 1: 
+                    {
+                        listHouse(username_input);
+                        goto menu;
+                    }
+                    case 2:
+                    {
+                        unListHouse(username_input);
+                        goto menu;
+                    }
+                    case 3:
+                    {
+                        goto menu;
+                    }
+                    case 0:
+                    {
+                        exit(0);
+                        break;
+                    }
+                    default:
+                    {
+                        cout << "Please enter valid options" << endl;
+                        goto houseEdit;
+                    }
+                    
+                }
                 goto menu;
             }
             case 3:
             {
-                searchHouses();
+                searchHouses(currentMember);
                 goto menu;
             }
             case 0:
@@ -282,3 +326,4 @@ void memberSignIn() {
         } 
     }
 }
+
