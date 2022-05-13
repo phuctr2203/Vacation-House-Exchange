@@ -48,3 +48,13 @@ int main() {
 
     return 0;
 }
+
+
+/*
+Things to do
+list/unlist house
+check availability
+ktra bai truc
+if else rating + credit point cho search house
+*/
+
