@@ -142,7 +142,7 @@ using namespace std;
             count++;
         }while(condition_true == 0);
 
-        ofstream oFile("member.txt", std::ofstream::trunc);
+        ofstream oFile("D:/Code/C++ RMIT/EEET2824/data/member.txt", std::ofstream::trunc);
         for(int i = 0; i < mem.size(); i++)
         {
             string username =mem[i].getUsername();
@@ -152,19 +152,19 @@ using namespace std;
             int creditPoints =mem[i].getCreditPoints();
             double RatingScore = mem[i].getRatingScore();
             if(i != mem.size() - 1){
-                oFile << username << ", " 
-                    << password << ", " 
-                    << name << ", " 
-                    << phone << ", " 
-                    << creditPoints << ", "
+                oFile << username << "," 
+                    << password << "," 
+                    << name << "," 
+                    << phone << "," 
+                    << creditPoints << ","
                     << RatingScore << endl;
             }
             else{
-                oFile << username << ", " 
-                        << password << ", " 
-                        << name << ", " 
-                        << phone << ", " 
-                        << creditPoints <<", "
+                oFile << username << "," 
+                        << password << "," 
+                        << name << "," 
+                        << phone << "," 
+                        << creditPoints <<","
                         << RatingScore;
             }
         }
@@ -174,7 +174,7 @@ using namespace std;
     vector<Member> tempMemory(){
         vector<Member> memList;
 
-        ifstream iFile("C:/Users/ASUS STRIX/Documents/MYSELF/best_programming/c++ practice class/test_final/sed-group-asm-main/data/member.txt");
+        ifstream iFile("D:/Code/C++ RMIT/EEET2824/data/member.txt");
         if (iFile.fail())
         {
             cout << "Fail to open file";
