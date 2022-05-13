@@ -2,7 +2,8 @@
 #include "member.h"
 #include "admin.h"
 #include "house.h"
-
+#include "non_member.h"
+ 
 using namespace std;
 
 int main() {
@@ -33,7 +34,7 @@ int main() {
             {
                 viewAllHouses(); break;
             } else {
-                //signUp();
+                signUp(); break;
             }
         }
         case 2: 
