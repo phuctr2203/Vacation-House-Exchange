@@ -208,7 +208,7 @@ void signUp() {
 
         mem.push_back(newMember);
 
-        ofstream oFile("C:/Users/ASUS STRIX/Documents/MYSELF/best_programming/c++ practice class/test_final/sed-group-asm-main/data/member.txt", std::ofstream::trunc);
+        ofstream oFile("D:/Code/C++ RMIT/EEET2824/data/member.txt", std::ofstream::trunc);
         for(int i = 0; i < mem.size(); i++)
         {
             string username =mem[i].getUsername();
@@ -218,19 +218,19 @@ void signUp() {
             int creditPoints =mem[i].getCreditPoints();
             double RatingScore = mem[i].getRatingScore();
             if(i != mem.size() - 1){
-                oFile << username << ", " 
-                    << password << ", " 
-                    << name << ", " 
-                    << phone << ", " 
-                    << creditPoints << ", "
+                oFile << username << "," 
+                    << password << "," 
+                    << name << "," 
+                    << phone << "," 
+                    << creditPoints << ","
                     << RatingScore << endl;
             }
             else{
-                oFile << username << ", " 
-                        << password << ", " 
-                        << name << ", " 
-                        << phone << ", " 
-                        << creditPoints <<", "
+                oFile << username << "," 
+                        << password << "," 
+                        << name << "," 
+                        << phone << "," 
+                        << creditPoints <<","
                         << RatingScore;
             }
         }
