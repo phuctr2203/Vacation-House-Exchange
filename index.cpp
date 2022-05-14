@@ -4,6 +4,7 @@
 #include "house.h"
 #include "non_member.h"
 #include "editHouse.h"
+#include "request.h"
  
 using namespace std;
 

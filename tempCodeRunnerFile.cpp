@@ -1,1 +1,1 @@
-   cin.ignore();
+x

@@ -1,153 +1,169 @@
 #include <iostream>
-#include <iostream>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <numeric>
 #include "houseReview.h"
 
 using namespace std;
 
 houseReview::houseReview(){};
-houseReview(string name, double score, string comment)
+houseReview::houseReview(string occupierReviewer, string commentHouse, string reviewHouseName, double reviewRate)
 {
-    this->name = name;
-    this->score = score;
-    this->comment = comment;
+    this->occupierReviewer = occupierReviewer;
+    this->commentHouse = commentHouse;
+    this->reviewHouseName = reviewHouseName;
+    this->reviewRate = reviewRate;
 }
 
-string houseReview::getName()
+string houseReview::getOccupierReviewer()
 {
-    return name;
+    return occupierReviewer;
 }
 
-double houseReview::getScore()
+string houseReview::getCommentHouse()
 {
-    return score;
+    return commentHouse;
 }
 
-string houseReview::getCmt()
+string houseReview::getReviewHouseName()
 {
-    return comment;
+    return reviewHouseName;
 }
 
+double houseReview::getReviewRate()
+{
+    return reviewRate;
+}
+
+//View House Review
 void houseReview::showHouseReview()
 {
-    cout << "\nHouse Name: " << name
-         << "\nHouse Score: " << score
-         << "\nHouse Comment: " << comment << endl; 
+    cout
+    << "\nReviewer: " << occupierReviewer
+    << "\nComment: " << commentHouse
+    << "\nHouse Review Name: " << reviewHouseName 
+    << "\nRating: " << reviewRate << endl;
 }
 
-void houseReview::addHouseCmt() 
+void houseReview::addCommentHouse() 
 {
 
 }
 
-void houseReview::addHouseScore() 
+void houseReview::addReviewRate() 
 {
 
 }
 
-void houseReview::updateReview()
-{
+//List of House Review to VEC
+vector<houseReview> tempHouseReview(){
+    vector<houseReview> houseReviewList;
 
-}
-
-void viewAllHouseReview() 
-{
-    vector<houseReview> housereview;
-
-    ifstream iFile ("D:/Code/C++ RMIT/EEET2824/data/review.txt");
-
+    ifstream iFile("reviewHouse.txt");
     if (iFile.fail())
     {
-        cout << "Fail to open file!";
+        cout << "Fail to open file";
     }
 
     while (!iFile.eof())
     {
-        string name;
-        double score;
-        string comment;
-        char ch;
-        stringstream ss;
+        string occupierReviewer;
+        string commentHouse;
+        string reviewHouseName;
+        string reviewRate_str;
         string file_string;
         getline(iFile, file_string);
-        ss << file_string;
-        ss >> name >> score >> ch >> comment;
+        stringstream ss(file_string);
+        getline(ss, occupierReviewer, ',');
+        getline(ss, commentHouse, ',');
+        getline(ss, reviewHouseName, ',');
+        
+        double reviewRate;
+        getline(ss, reviewRate_str, ',');
+        reviewRate = stod(reviewRate_str);
 
-        if (!name.empty()) 
-        {
-            name.pop_back();
-        }
-
-        if (!score.empty())
-        {
-            score.pop_back();
-        }
-
-        if (!comment.empty())
-        {
-            comment.pop_back();
-        }
-
-        houseReview housereview1 (name, score, comment);
-        housereview.push_back(housereview1);
+        houseReview houseReview1(occupierReviewer, commentHouse, reviewHouseName, reviewRate);
+        houseReviewList.push_back(houseReview1);
     }
     iFile.close();
-
-    for (int i = 0; i < housereview.size(), i++) 
-    {
-        housereview[i].showHouseReview();
-    }
-
-    ofstream oFile ("D:/Code/C++ RMIT/EEET2824/data/review.txt");
-    for (int i = 0; i < housereview.size(), i++) 
-    {
-        string name = housereview[i].getName();
-        double score = housereview[i].getScore();
-        string comment = housereview[i].getCmt();
-
-        if (i != housereview.size())
-        {
-            oFile
-            << name << ", "
-            << score << ", "
-            << comment << endl;
-        }
-        else
-        {
-            oFile
-            << name << ", "
-            << score << ", "
-            << comment;
-        }
-    }
-    oFile.close();
+    return houseReviewList;
 }
 
-int main() {
-    cout << "\n\n---- HOUSE REVIEW ----"
-            "\nThese are reviews for " << name << " house"
-            "\nDo you want to: "
-            "\n1. Rating the house"
-            "\n2. Comment the house" 
-            "\n3. View the reviews"<<endl;
-    int choice;
-    cin >> choice;
-    if (choice == 1)
+//View All House Review
+void viewAllHouseReview() 
+{
+    vector<houseReview> houseReviewList = tempHouseReview();
+
+    for (int i = 0; i < houseReviewList.size(); i++) {
+        houseReviewList[i].showHouseReview();
+    }
+}
+
+//Show House Review According to House Name
+vector<houseReview>viewHouseReview(string reviewHouseName) {
+    vector<houseReview> houseReviewList = tempHouseReview();
+    vector<houseReview> houseNameList;
+
+    for (int i = 0; i < houseReviewList.size(); i++)
     {
-        addHouseScore();
-        break;
-    } else if (choice == 2)
-    {
-        addHouseCmmt();
-        break;
-    }else if (choice == 3)
-    {
-        viewAllHouseReview();
-        break;
+        if (reviewHouseName == houseReviewList[i].getReviewHouseName())
+        {
+            houseNameList.push_back(houseReviewList[i]);
+        }
     }
 
-    return 0;
+    for (int i = 0; i < houseNameList.size(); i++)
+    {
+        houseNameList[i].showHouseReview();
+    }
+    
+    return houseNameList;
 }
+
+//Get house review rate according to house name
+vector<houseReview>getHouseRate(string reviewHouseName) {
+    vector<houseReview> houseReviewList = tempHouseReview();
+    vector<houseReview> houseNameList;
+
+    for (int i = 0; i < houseReviewList.size(); i++)
+    {
+        if (reviewHouseName == houseReviewList[i].getReviewHouseName())
+        {
+            houseNameList.push_back(houseReviewList[i]);
+        }
+    }
+    
+    return houseNameList;
+}
+
+//calculate new house rating base on review
+double calRating(string reviewHouseName)
+{
+    double houseRate_avg = 0;
+    double sum_of_houseRate = 0;
+    vector<double> houseRate;
+    vector<houseReview> houseNameList = getHouseRate(reviewHouseName);
+
+    for (int i = 0; i < houseNameList.size(); i++)
+    {
+        houseRate.push_back(houseNameList[i].getReviewRate());
+    }
+
+    sum_of_houseRate = accumulate(houseRate.begin(), houseRate.end(),decltype(houseRate)::value_type(0));
+
+    houseRate_avg = sum_of_houseRate/houseNameList.size();
+
+    return houseRate_avg;
+}
+
+/*int main() {
+    string reviewHouseName;
+    vector<houseReview> houseNameList;
+
+    cout << "\nEnter House Name: ";
+    getline(cin, reviewHouseName);
+    houseNameList = viewHouseReview(reviewHouseName);
+    cout << calRating(reviewHouseName) << endl;
+}*/

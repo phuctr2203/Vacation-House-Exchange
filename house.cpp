@@ -182,7 +182,8 @@ vector<House>viewHouseLocation(string location, Member currentLogIn) {
     {
         if((location == houseList[i].getLocation()) && 
            (currentLogIn.getCreditPoints() >= houseList[i].getCreditPrice()) &&
-           (currentLogIn.getRatingScore() >= houseList[i].getRequiredRating()) && houseList[i].getOccupier() == "none")
+           (currentLogIn.getRatingScore() >= houseList[i].getRequiredRating()) && (houseList[i].getOccupier() == "none") &&
+           (currentLogIn.getUsername() != houseList[i].getOwner())) //check member will not show their house
         {
             cityList.push_back(houseList[i]);
         }
@@ -218,4 +219,19 @@ House viewHousePossess(string house_possess_user)
 }
 
 
+//House pick 
+House housePick(string house_name) {
+    House house_pick;
+    vector<House> all_house = tempHouseMemory();
+    for (int i = 0; i < all_house.size(); i++) {
+        if (house_name == all_house[i].getHouseName()) {
+            house_pick = all_house[i];
+        }
+    }
 
+    if (house_pick.getHouseName() == "") {
+        cout << "No house found"<< endl;
+    }
+
+    return house_pick;
+}

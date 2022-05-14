@@ -59,7 +59,11 @@ public:
 void viewAllHouses(int a);
 
 vector<House>tempHouseMemory();
+
 vector<House>viewHouseLocation (string location, Member currentLogIn);
+
 House viewHousePossess(string house_possess_user);
+
+House housePick(string house_name);
 
 #endif

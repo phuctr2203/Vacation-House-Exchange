@@ -1,4 +1,3 @@
-//Occupier, Reviewer, Score, Comment
 dung,binh,3.3,Nha tam duoc
 dung,phuc,4.6,Nha cung duoc
 phuc,dung,3.4,Nha thoang

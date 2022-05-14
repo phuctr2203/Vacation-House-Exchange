@@ -10,23 +10,29 @@ using namespace std;
 
 class houseReview {
 private:
-    string name;
-    double score;
-    string comment;
+    string occupierReviewer;
+    string commentHouse;
+    string reviewHouseName;
+    double reviewRate;
 public:
     houseReview();
-    houseReview(string name, double score, string comment);
+    houseReview(string occupierReviewer, string commentHouse, string reviewHouseName, double reviewRate);
 
-    string getName();
-    double getScore();
-    string getCmt();
+    string getOccupierReviewer();
+    string getCommentHouse();
+    string getReviewHouseName();
+    double getReviewRate(); 
 
     void showHouseReview();
-    void addHouseCmt();
-    void addHouseScore();
-    void updateReview();
+    void addCommentHouse();
+    void addReviewRate();
+    void calRating();
 };
 
 void viewAllHouseReview();
+
+vector<houseReview>tempHouseReview();
+vector<houseReview>viewHouseReview(string reviewHouseName);
+
 
 #endif

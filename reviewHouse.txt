@@ -1,4 +1,3 @@
-//House name, Score, Comment
 Phuc Hotel,7.25,Nha thoang mat
 Phuc Hotel,3.25,Nha khonng rong
 Binh Homestay,4.45,Nha dep

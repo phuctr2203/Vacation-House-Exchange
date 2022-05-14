@@ -68,4 +68,7 @@ void memberSignIn();
 
 void searchHouses(Member x);
 
+// check occupy house condition of signed in member
+bool Occupy_House_Condition(string input_house_occupier);
+
 #endif
