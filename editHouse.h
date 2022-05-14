@@ -10,6 +10,8 @@
 
 using namespace std;
 
+bool list_available(string check_owner);
+
 void listHouse(string owner);
 
 void unListHouse(string owner);

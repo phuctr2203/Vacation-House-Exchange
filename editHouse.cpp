@@ -10,70 +10,60 @@
 
 using namespace std;
 
+bool list_available(string check_owner)
+{
+    vector<House> houseList = tempHouseMemory();
+    for(int i = 0; i < houseList.size(); i++)
+    {
+        if(houseList[i].getOwner() == check_owner)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 void listHouse(string owner) {
-    int dm = 0;
-    int condition_true = 0;
-    int count = 0;
     int choose;
     int index;
-    bool check = false;
 
     vector<House> houseList = tempHouseMemory();
     House newHouse;
 
     cout << "----- List House -----" << endl;
-    
-    do {
-        string owner_input;
-        if (count == 0) {
-            owner_input = owner;
-        } else {
-            cout << "You have listed a house, please unlist before list new house." << endl;
-            cout << "Please select options: "
+    while(!list_available(owner))
+    {
+        cout << "You have listed a house, please unlist before list new house." << endl;
+        cout << "Please select options: "
                     "\n1. Unlist house"
                     "\n2. Exit" << endl;
-            listHouse:
+        cin >> index;
+        while(index != 1 && index != 2)
+        {
+            cout << "Invalid Input!" << endl;
+            cout << "Please select options: "
+            "\n1. Unlist house"
+            "\n2. Exit" << endl;
             cin >> index;
-            switch (index) {
-                case 1:
-                {
-                    unListHouse(owner);
-                    break;
-                }
-                case 2:
-                {
-                    exit(0);
-                    break;
-                }
-                default:
-                {
-                    cout << "Please choose 1 or 0" << endl;
-                    goto listHouse;
-                }
-            }
-            break;
         }
-
-        for (int i = 0; i < houseList.size(); i++) {
-            if (owner_input == houseList[i].getOwner()) {
-                condition_true = 0;
-                check = false;
-                break;
-            } else {
-                condition_true = 1;
-                check = true;
-            }
+        if(index == 1)
+        {
+            unListHouse(owner);
         }
-        newHouse.setOwner(owner);
-        count++;
-    }while(condition_true == 0);
+        else if(index == 2)
+        {
+            exit(0);
+        }
+    }
 
+    newHouse.setOwner(owner);
     string houseName_input;
     string location_input;
     int creditPrice_input;
     double requiredRating_input;
     
     cout << "Please enter house name: ";
+    cin.ignore();
     getline(cin, houseName_input);
     newHouse.setHouseName(houseName_input);
 
@@ -195,8 +185,4 @@ void unListHouse(string owner) {
         }
     }
     cout << "House unlisted" << endl;
-}
-
-int main() {
-    listHouse("shelby");
 }

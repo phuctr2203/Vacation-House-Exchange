@@ -7,3 +7,4 @@ strange,123,Dr Strange,069696969,500,10
 tony,123,Tony Stark,0111111111,500,5
 steve,123,Steve Jobs,12432432,500,0
 choido,123,choi do ,113114115,500,0
+peter,123,parker pate,0303939,500,0

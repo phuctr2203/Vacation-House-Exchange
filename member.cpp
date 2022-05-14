@@ -97,6 +97,7 @@ void Member::requestOccupy(){
 
 }
 
+// check if enter correct username and pwd
 bool signIn(string u_intput, string u_pwd) {
     vector<Member> mem = tempMemory();
     //check input
@@ -112,6 +113,7 @@ bool signIn(string u_intput, string u_pwd) {
     return condition_true;
 }
 
+// list all of members
 vector<Member>tempMemory(){
     vector<Member> memList;
 
@@ -153,6 +155,7 @@ vector<Member>tempMemory(){
     return memList;
 }
 
+// return a class of signed in member
 Member inputUser(string username_int) {
     Member mem_choose;
 
@@ -172,6 +175,7 @@ Member inputUser(string username_int) {
     return mem_choose;
 }
 
+// show all member info
 void viewAllMembers() {
     vector<Member> mem_lists = tempMemory();
 
@@ -180,6 +184,7 @@ void viewAllMembers() {
     }
 }
 
+// search house apropriate with signed in member
 void searchHouses(Member x) {
     int index;
     string location;
@@ -237,7 +242,7 @@ void searchHouses(Member x) {
     }
 }
 
-
+// function when member sign in
 void memberSignIn() {
     string username_input, username_password;
     int index;
@@ -280,6 +285,7 @@ void memberSignIn() {
                         "\n2. Unlist house"
                         "\n3. Back to menu"
                         "\n0. Exit" << endl;
+                cout << "Enter your choice: ";
                 houseEdit:
                 cin >> index;
                 switch (index) {

@@ -81,6 +81,7 @@ void House::calHouseRating(double a)
     houseRating += a;
 }
 
+// View House Infor
 void House::viewHouseInfo(int a){
     if(a == 1)
     {
@@ -115,6 +116,7 @@ void House::viewHouseInfo(int a){
     }
 }
 
+// List of House to VECTOR
 vector<House>tempHouseMemory(){
     vector<House> houseList;
 
@@ -160,6 +162,8 @@ vector<House>tempHouseMemory(){
     return houseList;
 }
 
+
+// View All House Info
 void viewAllHouses(int a) {
     vector<House> houseList = tempHouseMemory();
 
@@ -168,6 +172,7 @@ void viewAllHouses(int a) {
     }
 }
 
+// Show House According to Location
 vector<House>viewHouseLocation(string location, Member currentLogIn) {
     vector<House> cityList;
 
@@ -190,6 +195,7 @@ vector<House>viewHouseLocation(string location, Member currentLogIn) {
     return cityList;
 }
 
+// View House that member signed in possess
 House viewHousePossess(string house_possess_user)
 {
     House house_result;

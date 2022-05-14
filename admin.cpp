@@ -27,7 +27,7 @@ void adminSignIn() {
     cout << "Enter admin password: " << endl;
     cin >> password;
     
-    if (username != "admin" && password != "admin") {
+    if (username != "admin" || password != "admin") {
         cout << "Incorrect admin username or password! \n";
         goto start;
     } else {

@@ -4,3 +4,4 @@ binh,none,Binh Homestay,Saigon,23,0,0
 truc,dung,Truc Home,Danang,37,0,7
 strange,none,hello,Hanoi,123,0,1
 tony,none,hello,Hanoi,123,0,1
+shelby,none,hello,Hanoi,12,0,1
