@@ -61,11 +61,31 @@ void listHouse(string owner) {
     string location_input;
     int creditPrice_input;
     double requiredRating_input;
+    int condition_true = 0;
+    int count = 0;
     
-    cout << "Please enter house name: ";
-    cin.ignore();
-    getline(cin, houseName_input);
-    newHouse.setHouseName(houseName_input);
+    do {
+        if(count == 0) {
+            cout << "Please enter house name: ";
+            cin.ignore();
+            getline(cin, houseName_input);
+        } else {
+            cout << "House name is not available, please use other house name" << endl;
+            cout << "\nPlease enter house name: ";
+            getline(cin, houseName_input);
+        }
+
+        for (int i = 0; i < houseList.size(); i++) {
+            if (houseName_input == houseList[i].getHouseName()) {
+                condition_true = 0;
+                break;
+            } else {
+                condition_true = 1;
+            }
+        }
+        newHouse.setHouseName(houseName_input);
+        count++;
+    } while (condition_true == 0);
 
     cout << "Please choose your location: " 
             "\n1. Hanoi"

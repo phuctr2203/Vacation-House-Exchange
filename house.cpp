@@ -124,41 +124,47 @@ vector<House>tempHouseMemory(){
     if (iFile.fail())
     {
         cout << "Fail to open file";
-    }
-
-    while (!iFile.eof())
+    } 
+    
+    if(iFile.eof())
     {
-        string owner;
-        string occupier;
-        string houseName;
-        string location;
-        string creditPrice_str;
-        string houseRating_str;
-        string requiredRating_str;
-        string file_string;
-        getline(iFile, file_string);
-        stringstream ss(file_string);
-        getline(ss, owner, ',');
-        getline(ss, occupier, ',');
-        getline(ss, houseName, ',');
-        getline(ss, location, ',');
-        
-        int creditPrice;
-        getline(ss, creditPrice_str, ',');
-        creditPrice = stoi(creditPrice_str);
+        cout << "Hello";
+    } else {
 
-        double houseRating;
-        getline(ss, houseRating_str, ',');
-        houseRating = stod(houseRating_str);
+        while (!iFile.eof())
+        {
+            string owner;
+            string occupier;
+            string houseName;
+            string location;
+            string creditPrice_str;
+            string houseRating_str;
+            string requiredRating_str;
+            string file_string;
+            getline(iFile, file_string);
+            stringstream ss(file_string);
+            getline(ss, owner, ',');
+            getline(ss, occupier, ',');
+            getline(ss, houseName, ',');
+            getline(ss, location, ',');
+            
+            int creditPrice;
+            getline(ss, creditPrice_str, ',');
+            creditPrice = stoi(creditPrice_str);
 
-        double requiredRating;
-        getline(ss, requiredRating_str, ',');
-        requiredRating = stod(requiredRating_str);
+            double houseRating;
+            getline(ss, houseRating_str, ',');
+            houseRating = stod(houseRating_str);
 
-        House house1(owner, occupier, houseName, location, creditPrice, houseRating, requiredRating);
-        houseList.push_back(house1);
+            double requiredRating;
+            getline(ss, requiredRating_str, ',');
+            requiredRating = stod(requiredRating_str);
+
+            House house1(owner, occupier, houseName, location, creditPrice, houseRating, requiredRating);
+            houseList.push_back(house1);
+        }
+        iFile.close();
     }
-    iFile.close();
     return houseList;
 }
 
@@ -167,9 +173,13 @@ vector<House>tempHouseMemory(){
 void viewAllHouses(int a) {
     vector<House> houseList = tempHouseMemory();
 
-    for (int i = 0; i < houseList.size(); i++) {
-        houseList[i].viewHouseInfo(a);
-    }
+    if (houseList.size() == 0) {
+        cout << "No house has been listed" << endl;
+    } else {
+        for (int i = 0; i < houseList.size(); i++) {
+            houseList[i].viewHouseInfo(a);
+        }
+    }    
 }
 
 // Show House According to Location
@@ -226,7 +236,7 @@ House housePick(string house_name) {
     for (int i = 0; i < all_house.size(); i++) {
         if (house_name == all_house[i].getHouseName()) {
             house_pick = all_house[i];
-        }
+        } 
     }
 
     if (house_pick.getHouseName() == "") {
