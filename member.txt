@@ -1,10 +1,2 @@
-binh,123,Binh Huy Nguyen,3883531,500,4
-dung,123,Dung Tri Nguyen,3883630,500,-3
-phuc,123,Phuc Hoang Tran,3911244,500,7
-truc,123,Truc Thanh Trinh,3927089,500,9
-shelby,123,Thomas Shelby,0123456789,500,-9
-strange,123,Dr Strange,069696969,500,10
-tony,123,Tony Stark,0111111111,500,5
-steve,123,Steve Jobs,12432432,500,0
-choido,123,choi do ,113114115,500,0
-peter,123,parker pate,0303939,500,0
+phuc,213,Phuc Tran,0988888,500,0
+dung,123,Dung Nguyen,098338,500,0

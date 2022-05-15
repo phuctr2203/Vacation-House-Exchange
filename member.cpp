@@ -94,8 +94,12 @@ void Member::viewInformation(){
     << "\nRating Score: " << RatingScore << endl;
 }
 
-void Member::requestOccupy(){
-
+//New: function output info of occupiers
+void Member::viewInfoOccupier() {
+    cout << "\nUsername: " << username 
+    << "\nName: "<< name 
+    << "\nPhone: "<< phone 
+    << "\nRating Score: " << RatingScore << endl;
 }
 
 // check if enter correct username and pwd
@@ -117,12 +121,14 @@ bool signIn(string u_intput, string u_pwd) {
 // list all of members
 vector<Member>tempMemory(){
     vector<Member> memList;
+    string test;
 
     ifstream iFile("member.txt");
     if (iFile.fail())
     {
         cout << "Fail to open file";
     }
+
     while (!iFile.eof())
     {
         string username;
@@ -153,6 +159,7 @@ vector<Member>tempMemory(){
         memList.push_back(member1);
     }
     iFile.close();
+
     return memList;
 }
 
@@ -180,8 +187,12 @@ Member inputUser(string username_int) {
 void viewAllMembers() {
     vector<Member> mem_lists = tempMemory();
 
-    for (int i = 0; i < mem_lists.size(); i++) {
-        mem_lists[i].viewInformation();
+    if (mem_lists.size() == 0) {
+        cout << "Please sign up to be the first user! :((" << endl;
+    } else {
+        for (int i = 0; i < mem_lists.size(); i++) {
+            mem_lists[i].viewInformation();
+        }
     }
 }
 
@@ -204,10 +215,13 @@ void searchHouses(Member x) {
         {
             location = "Hanoi";
             cityList = viewHouseLocation(location, x);
-            requestMenu(cityList, x);
             if(cityList.size() == 0)
             {
                 cout << "Cannot find house suitable with your status" << endl;
+            }
+            else
+            {
+                requestMenu(cityList, x);
             }
             break;
         }
@@ -215,10 +229,13 @@ void searchHouses(Member x) {
         {
             location = "Saigon";
             cityList = viewHouseLocation(location, x);
-            requestMenu(cityList, x);
             if(cityList.size() == 0)
             {
                 cout << "Cannot find house suitable with your status" << endl;
+            }
+            else
+            {
+                requestMenu(cityList, x);
             }
             break;
         }
@@ -226,10 +243,14 @@ void searchHouses(Member x) {
         {
             location = "Danang";
             cityList = viewHouseLocation(location, x);
-            requestMenu(cityList, x);
+            
             if(cityList.size() == 0)
             {
                 cout << "Cannot find house suitable with your status" << endl;
+            }
+            else
+            {
+                requestMenu(cityList, x);
             }
             break;
         }
@@ -267,6 +288,7 @@ void memberSignIn() {
     if (signIn(username_input, username_password)) {
         Member currentMember = inputUser(username_input);
         menu:
+        acceptNoti(username_input);
         cout << "\nThis is your menu as a member:"
             "\n1. View Personal Information"
             "\n2. View House Information"
@@ -289,7 +311,9 @@ void memberSignIn() {
                 cout << "\nThis is your house information:"
                         "\n1. List house"
                         "\n2. Unlist house"
-                        "\n3. Back to menu"
+                        "\n3. Review Current Occupier"
+                        "\n4. Check My House Occupy Request"
+                        "\n5. Back to Menu"
                         "\n0. Exit" << endl;
                 cout << "Enter your choice: ";
                 houseEdit:
@@ -306,6 +330,39 @@ void memberSignIn() {
                         goto menu;
                     }
                     case 3:
+                    {
+                        cout << "Review Occupier" << endl;
+                        goto menu;
+                    }
+                    case 4:
+                    {
+                        cout << "----- Your Occupy Request List -----" << endl;
+                        currentOwnerRequestList(username_input);
+                        int choice_owner;
+                        choice_owner:
+                        cout << "Choose an options: " 
+                                "\n1. Accept a request" 
+                                "\n2. Back to menu" << endl;
+                        cin >> choice_owner;
+                        switch(choice_owner) {
+                            case 1:
+                            {   
+                                acceptRequest(username_input);
+                                break;
+                            }
+                            case 2:
+                            {
+                                goto menu;
+                            }
+                            default:
+                            {
+                                cout << "Please choose a choice: " << endl;
+                                goto choice_owner;
+                            }
+                        goto menu;
+                        }
+                    }
+                    case 5:
                     {
                         goto menu;
                     }
@@ -348,7 +405,30 @@ void memberSignIn() {
                 }
                 else
                 {
-                    cout << "Hien list house ma tao dang request" << endl;
+                    cout << "----- Current Request List -----" << endl;
+                    currentOccupierRequestList(username_input);
+                    int choice;
+                    choice:
+                    cout << "Choose an options: " 
+                            "\n1. Cancel a request" 
+                            "\n2. Back to menu" << endl;
+                    cin >> choice;
+                    switch(choice) {
+                        case 1:
+                        {   
+                            deleteRequest(username_input);
+                            break;
+                        }
+                        case 2:
+                        {
+                            goto menu;
+                        }
+                        default:
+                        {
+                            cout << "Please choose a choice: " << endl;
+                            goto choice;
+                        }
+                    }
                 }
                 goto menu;
             }

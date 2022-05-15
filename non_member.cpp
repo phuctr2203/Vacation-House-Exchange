@@ -44,7 +44,7 @@ void signUp() {
         }
         newMember.setUsername(username_input);
         count++;
-    }while(condition_true == 0);
+    }while(condition_true == 0 && mem.size() != 0);
     
     string pwd_input;
     string name_input;

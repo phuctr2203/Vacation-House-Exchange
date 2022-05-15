@@ -119,52 +119,48 @@ void House::viewHouseInfo(int a){
 // List of House to VECTOR
 vector<House>tempHouseMemory(){
     vector<House> houseList;
+    string test;
 
     ifstream iFile("houseList.txt");
     if (iFile.fail())
     {
         cout << "Fail to open file";
     } 
-    
-    if(iFile.eof())
+
+    while (!iFile.eof())
     {
-        cout << "Hello";
-    } else {
+        string owner;
+        string occupier;
+        string houseName;
+        string location;
+        string creditPrice_str;
+        string houseRating_str;
+        string requiredRating_str;
+        string file_string;
+        getline(iFile, file_string);
+        stringstream ss(file_string);
+        getline(ss, owner, ',');
+        getline(ss, occupier, ',');
+        getline(ss, houseName, ',');
+        getline(ss, location, ',');
+        
+        int creditPrice;
+        getline(ss, creditPrice_str, ',');
+        creditPrice = stoi(creditPrice_str);
 
-        while (!iFile.eof())
-        {
-            string owner;
-            string occupier;
-            string houseName;
-            string location;
-            string creditPrice_str;
-            string houseRating_str;
-            string requiredRating_str;
-            string file_string;
-            getline(iFile, file_string);
-            stringstream ss(file_string);
-            getline(ss, owner, ',');
-            getline(ss, occupier, ',');
-            getline(ss, houseName, ',');
-            getline(ss, location, ',');
-            
-            int creditPrice;
-            getline(ss, creditPrice_str, ',');
-            creditPrice = stoi(creditPrice_str);
+        double houseRating;
+        getline(ss, houseRating_str, ',');
+        houseRating = stod(houseRating_str);
 
-            double houseRating;
-            getline(ss, houseRating_str, ',');
-            houseRating = stod(houseRating_str);
+        double requiredRating;
+        getline(ss, requiredRating_str, ',');
+        requiredRating = stod(requiredRating_str);
 
-            double requiredRating;
-            getline(ss, requiredRating_str, ',');
-            requiredRating = stod(requiredRating_str);
-
-            House house1(owner, occupier, houseName, location, creditPrice, houseRating, requiredRating);
-            houseList.push_back(house1);
-        }
-        iFile.close();
+        House house1(owner, occupier, houseName, location, creditPrice, houseRating, requiredRating);
+        houseList.push_back(house1);
     }
+    iFile.close();
+
     return houseList;
 }
 
@@ -174,7 +170,7 @@ void viewAllHouses(int a) {
     vector<House> houseList = tempHouseMemory();
 
     if (houseList.size() == 0) {
-        cout << "No house has been listed" << endl;
+        cout << "Welcome first user to our app! Please list a house :((" << endl;
     } else {
         for (int i = 0; i < houseList.size(); i++) {
             houseList[i].viewHouseInfo(a);

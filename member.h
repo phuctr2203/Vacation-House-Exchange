@@ -50,9 +50,10 @@ public:
     void addRatingScore(double a);
 
     void viewAllHouses();
+
     void viewInformation();
 
-    void requestOccupy();
+    void viewInfoOccupier();
 
 };
 

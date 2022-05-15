@@ -11,7 +11,7 @@ using namespace std;
 int main() {
     int choose;
     mainMenu:
-    cout << "EEET2482/COSC2082 ASSIGNMENT"
+    cout << "\nEEET2482/COSC2082 ASSIGNMENT"
             "\nVACATION HOUSE EXCHANGE APPLICATION"
             "\n \nInstructor: Mr. Linh Tran "
             "\nGroup: Group 18 "
@@ -36,7 +36,6 @@ int main() {
         }
         case 3: 
         {
-            cout << "\nAdmin Sign in!" << endl;
             adminSignIn(); 
             break;
         }

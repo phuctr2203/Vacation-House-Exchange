@@ -19,6 +19,7 @@ using namespace std;
     string password = "admin";
 
 void adminSignIn() {
+    cout << "Admin Sign In" << endl;
     int choose;
 
     start:
