@@ -5,6 +5,7 @@
 #include <fstream>
 #include "house.h"
 #include "member.h"
+#include "houseReview.h"
 
 using namespace std;
 
@@ -220,6 +221,24 @@ House viewHousePossess(string house_possess_user)
     } else {
         house_result.viewHouseInfo(3);
     }
+
+    return house_result;
+}
+
+//New: view occupy house for occupier
+House viewHouseOccupied(string occupied_name)
+{
+    House house_result;
+    vector<House> house_total = tempHouseMemory();
+    for(int i = 0; i < house_total.size(); i++)
+    {
+        if(occupied_name == house_total[i].getOccupier())
+        {
+            house_result = house_total[i];
+        }
+    }
+
+    house_result.viewHouseInfo(3);
 
     return house_result;
 }

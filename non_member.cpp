@@ -69,7 +69,7 @@ void signUp() {
 
     mem.push_back(newMember);
 
-    ofstream oFile("member.txt", std::ofstream::trunc);
+    ofstream memberFile("member.txt", std::ofstream::trunc);
     for(int i = 0; i < mem.size(); i++)
     {
         string username =mem[i].getUsername();
@@ -80,14 +80,14 @@ void signUp() {
         double RatingScore = mem[i].getRatingScore();
 
         if(i != mem.size() - 1){
-            oFile << username << "," 
+            memberFile << username << "," 
                 << password << "," 
                 << name << "," 
                 << phone << "," 
                 << creditPoints << ","
                 << RatingScore << endl;
         } else {
-            oFile << username << "," 
+            memberFile << username << "," 
                     << password << "," 
                     << name << "," 
                     << phone << "," 
@@ -95,6 +95,9 @@ void signUp() {
                     << RatingScore;
         }
     }
+
+    memberFile.close();
+
     cout << "Registration complete" << endl;
 }
 

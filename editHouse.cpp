@@ -159,6 +159,7 @@ void listHouse(string owner) {
             << requiredRating;
         }
     }
+    oFile.close();
 
     cout << "List house complete" << endl;
 }
@@ -204,5 +205,6 @@ void unListHouse(string owner) {
             << requiredRating;
         }
     }
+    oFile.close();
     cout << "House unlisted" << endl;
 }

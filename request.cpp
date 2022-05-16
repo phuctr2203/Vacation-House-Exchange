@@ -6,6 +6,7 @@
 #include "house.h"
 #include "member.h"
 #include "request.h"
+#include "houseReview.h"
 
 using namespace std;
 
@@ -96,7 +97,7 @@ vector<Request>tempRequestMemory(){
 //Menu for request house
 void requestMenu(vector<House> house_list, Member a) {
     int choose;
-
+    vector<houseReview> house_review;
     chooseOption:
     cout << "\nChoose an options: "
             "\n1. View Review"
@@ -107,7 +108,7 @@ void requestMenu(vector<House> house_list, Member a) {
     switch (choose) {
         case 1:
         {
-            cout << "Please enter house name you want to see review: ";
+            house_review = viewHouseReview();
             break;
         }
         case 2:
@@ -115,7 +116,7 @@ void requestMenu(vector<House> house_list, Member a) {
             if (Occupy_House_Condition(a.getUsername())) {
                 requestSearchHouse(house_list, a);
             } else {
-                cout << "cut" << endl;
+                cout << "Cannot request" << endl;
             }
             break;
         }
@@ -192,6 +193,7 @@ void requestSearchHouse(vector<House> houseList, Member currentMem) {
             << isRequest;         
         }
     }
+    oFile.close();
 
     cout << "Request house successfully" << endl;
     
@@ -325,6 +327,7 @@ void deleteRequest(string occupier_name) {
             << isRequest;
         }
     }    
+    oFile.close();
     cout << "Request Deleted" << endl;
 }
 
@@ -386,6 +389,7 @@ void acceptRequest(string owner_name) {
             << isRequest;
         }
     }
+    oFile.close();
 
     for (int i = 0; i < houseList.size(); i++) {
         if (owner_name == houseList[i].getOwner()) {
@@ -421,9 +425,11 @@ void acceptRequest(string owner_name) {
             << requiredRating;
         }
     }
+    houseFile.close();
 
     ofstream notiFile("noti.txt", std::ofstream::trunc);
     notiFile << owner_name << "," << acceptOccupy << "," << " "  << "," << " ";
+    notiFile.close();
 
     cout << "\nAccept Occupy Successful" << endl;
 }
@@ -487,5 +493,6 @@ void acceptNoti(string user) {
                 << isRequest;
             }
         }
+        oFile.close();
     }    
 }    

@@ -7,6 +7,7 @@
 #include "house.h"
 #include "editHouse.h"
 #include "request.h"
+#include "houseReview.h"
 
 using namespace std;
 
@@ -331,7 +332,8 @@ void memberSignIn() {
                     }
                     case 3:
                     {
-                        cout << "Review Occupier" << endl;
+                        cout << "\n---- Review Occupier ----" << endl;
+                        
                         goto menu;
                     }
                     case 4:
@@ -387,13 +389,27 @@ void memberSignIn() {
             }
             case 4: // new
             {
+                int choice1;
                 if(!Occupy_House_Condition(username_input))
                 {
-                    cout << "Review nha dang thue" << endl;
+                    House house_occupied;
+                    cout << "\n--- Current Occupied House ---" << endl;
+                    house_occupied = viewHouseOccupied(username_input);
+
+                    cout << "\n1. Review House"
+                            "\n2. Back to menu" << endl;
+                    cin >> choice1;
+                    if (choice1 == 1) {
+                        cout << "\n---- Review Current Occupied House ----" << endl;
+                        addReview(house_occupied);
+                        updateRating(house_occupied);
+                    } else {
+                        goto menu;
+                    }                
                 }
                 else
                 {
-                    cout << "Chua thue nha nao ca" << endl;
+                    cout << "You are not occupying any houses currently. Please rent a house and come back to review!" << endl;
                 }
                 goto menu;
             }
@@ -401,7 +417,7 @@ void memberSignIn() {
             {
                 if(!Occupy_House_Condition(username_input))
                 {
-                    cout << "Cut! dang thue roi xem cai lol" << endl;
+                    cout << "Seem you are occupying a house. Cannot request any house now! Come back later" << endl;
                 }
                 else
                 {
@@ -456,4 +472,3 @@ bool Occupy_House_Condition(string input_house_occupier)
     }
     return true; // not occupying
 }
-

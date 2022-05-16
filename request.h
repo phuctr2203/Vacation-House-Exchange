@@ -7,6 +7,7 @@
 #include <fstream>
 #include "house.h"
 #include "member.h"
+#include "houseReview.h"
 
 using namespace std;
 

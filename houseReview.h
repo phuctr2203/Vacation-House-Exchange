@@ -5,6 +5,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <iomanip>
+#include <cmath>
+#include "house.h"
 
 using namespace std;
 
@@ -19,20 +22,45 @@ public:
     houseReview(string occupierReviewer, string commentHouse, string reviewHouseName, double reviewRate);
 
     string getOccupierReviewer();
+
     string getCommentHouse();
+
+    double getReviewRate();
+
     string getReviewHouseName();
-    double getReviewRate(); 
+
+    void setOccupierReviewer(string a);
+
+    void setCommentHouse(string a);
+
+    void setReviewHouseName(string a);
+
+    void setReviewRate(double a);
 
     void showHouseReview();
-    void addCommentHouse();
-    void addReviewRate();
-    void calRating();
+
 };
 
 void viewAllHouseReview();
 
 vector<houseReview>tempHouseReview();
-vector<houseReview>viewHouseReview(string reviewHouseName);
 
+vector<houseReview>viewHouseReview();
+
+vector<houseReview>getHouseRate(string reviewHouseName);
+
+void addReview(House review_house);
+
+double calRating(string reviewHouseName);
+
+void updateRating(House current_occupied_house_user);
+
+vector<houseReview> tempOccupierReview();
+
+vector<houseReview>viewOccupierReview();
+
+void updateOccupierRating(Member current_occupied_house_user);
+
+void addOccupierReview(House review_member);
 
 #endif

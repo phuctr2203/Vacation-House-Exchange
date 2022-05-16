@@ -5,6 +5,7 @@
 #include "non_member.h"
 #include "editHouse.h"
 #include "request.h"
+#include "houseReview.h"
  
 using namespace std;
 

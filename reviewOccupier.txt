@@ -1,5 +1,3 @@
-dung,binh,3.3,Nha tam duoc
-dung,phuc,4.6,Nha cung duoc
-phuc,dung,3.4,Nha thoang
-phuc,truc,2.2,Chua du yeu cau
-binh,phuc,5.9,Nha giong hinh anh
+dung,o ban vl,Phuc Hotel,3.3
+phuc,du xong khong don,Binh Hotel,4
+truc,nhau ko ru chu nha,Dung House,5

@@ -1,7 +1,2 @@
-truc,Nha thoang mat,Phuc Hotel,7.25
-binh,Nha khonng rong,Santum Sanctorum,3.25
-dung,Nha dep,Binh Homestay,4.25
-strange,Cung duoc,Dung Hotel,2.2
-tony,Khong dung nhu hinh anh,abc,-3.5
-binh,Nha vkl,Phuc Hotel,9
-dung,Nha be dcd,Phuc Hotel,-2.3
+truc,Nha thoang mat,Phuc House,10
+tony,a,Phuc House,9.9

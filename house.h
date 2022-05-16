@@ -64,6 +64,8 @@ vector<House>viewHouseLocation (string location, Member currentLogIn);
 
 House viewHousePossess(string house_possess_user);
 
+House viewHouseOccupied(string occupied_name);
+
 House housePick(string house_name);
 
 #endif
