@@ -1,5 +1,0 @@
-Phuc Hotel,7.25,Nha thoang mat
-Phuc Hotel,3.25,Nha khonng rong
-Binh Homestay,4.45,Nha dep
-Dung House,2.2,Cung duoc
-Truc Home,-3.5,Khong dung nhu hinh anh
