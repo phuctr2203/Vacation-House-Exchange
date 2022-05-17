@@ -1,2 +1,0 @@
-truc,Nha thoang mat,Phuc House,10
-tony,a,Phuc House,9.9
