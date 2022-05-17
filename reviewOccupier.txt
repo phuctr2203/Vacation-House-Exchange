@@ -1,3 +1,0 @@
-dung,o ban vl,Phuc Hotel,3.3
-phuc,du xong khong don,Binh Hotel,4
-truc,nhau ko ru chu nha,Dung House,5
