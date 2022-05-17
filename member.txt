@@ -1,8 +1,0 @@
-name,0,full name,0,0,0
-phuc,123,Phuc Tran,0988888,500,0
-dung,123,Dung Nguyen,098338,500,0
-binh,123,Binh Nguyen,039393,500,0
-truc,123,Truc Trinh,093293,500,0
-tony,123,Tony Stark,0938365,500,0
-strange,123,Dr Strange,0363633,500,0
-marc,123,Marc Spectre,074738,500,0
