@@ -1,7 +1,0 @@
-phuc,tony,Phuc House,Hanoi,200,11.6,0
-dung,none,Dung House,Hanoi,200,0,0
-binh,none,Binh Hotel,Hanoi,150,0,0
-truc,none,Nha Nghi Truc,Saigon,100,0,0
-tony,none,Avenger House,Saigon,80,0,-5
-strange,none,Strange House,Danang,70,0,-1
-marc,none,Marc House,Danang,100,0,-9
