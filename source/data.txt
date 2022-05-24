@@ -1,0 +1,19 @@
+phuc,123,Phuc Tran,0383838,500,5.5
+dung,123,Dung Nguyen,294838,500,0
+binh,123,Binh Nguyen,5848183,500,6
+tony,123,Tony Stark,099339,500,0
+hieu,123,Hieu Duc,02131283,500,0
+newuser,12345,New User Name,09347471,500,10
+dung,newuser,Dung House,Danang,10,-10,0
+binh,none,Binh House,Saigon,100,0,2
+tony,binh,Avenger House,Hanoi,100,0,0
+phuc,none,Phuc House,Hanoi,20,0,1
+phuc,nice house,Dung House,-10
+marc,truc,Marc House,none
+truc,marc,Nha Nghi Truc,none
+dung,nice,phuc,5
+dung,cool,phuc,7
+dung,saad,phuc,1
+tony,haha,binh,6
+dung,XD,phuc,9
+dung,very clean,newuser,10

@@ -1,0 +1,6 @@
+phuc,123,Phuc Tran,0383838,500,5.5
+dung,123,Dung Nguyen,294838,500,0
+binh,123,Binh Nguyen,5848183,500,6
+tony,123,Tony Stark,099339,500,0
+hieu,123,Hieu Duc,02131283,500,0
+newuser,12345,New User Name,09347471,500,10

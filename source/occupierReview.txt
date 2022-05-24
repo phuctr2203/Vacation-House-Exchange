@@ -1,0 +1,6 @@
+dung,nice,phuc,5
+dung,cool,phuc,7
+dung,saad,phuc,1
+tony,haha,binh,6
+dung,XD,phuc,9
+dung,very clean,newuser,10
