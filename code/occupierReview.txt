@@ -1,5 +1,0 @@
-dung,ngu vcl,phuc,5
-dung,n gu vai lon phuc oi,phuc,7
-dung,saad,phuc,1
-tony,ngu vcl,binh,6
-dung,ngu vcl,phuc,9

@@ -1,4 +1,0 @@
-phuc,none,,Hanoi,200,0,-9
-dung,phuc,Dung House,Danang,10,-10,0
-binh,none,Binh House,Saigon,100,0,2
-tony,binh,Avenger House,Hanoi,100,0,0
